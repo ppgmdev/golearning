@@ -1,5 +1,6 @@
 package main
 
+//minor changes
 import (
 	"fmt"
 	"math"
