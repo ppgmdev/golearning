@@ -15,12 +15,19 @@ func main() {
 	//FirstName: "Pepe",
 	//}
 
-	appUser, err := user.NewUser(userFirstName, userLastName, userBirthdate)
+	appUser, err := user.New(userFirstName, userLastName, userBirthdate)
 
 	if err != nil {
 		fmt.Println(err)
 		panic("cant continue")
 	}
+
+	admin := user.NewAdmin("test@example.com", "password123")
+	admin.OutputUserDetails()
+	admin.ClearUserName()
+	admin.OutputUserDetails()
+
+	fmt.Println("-------------------")
 
 	// ... do something awesome with that gathered data!
 	appUser.OutputUserDetails()
