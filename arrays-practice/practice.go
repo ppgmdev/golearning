@@ -32,7 +32,7 @@ func main() {
 
 	//6)
 	courseGoals[1] = "Learn all the details"
-	courseGoals = append(courseGoals, "Learn all the basics")
+	courseGoals = append(courseGoals, "Learn all the basics", "Build a project")
 	fmt.Println(courseGoals)
 
 	//7)
