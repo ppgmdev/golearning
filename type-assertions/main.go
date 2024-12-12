@@ -3,24 +3,25 @@ package main
 import "fmt"
 
 func main() {
+	myStr := "hello bedrock"
+	myStrPointer := &myStr
 
-	var mystery interface{} = "Hello world"
+	var mystery interface{} = myStrPointer
 
-	str, ok := mystery.(string)
+	str, ok := mystery.(*string)
+	fmt.Println(ok)
 
 	if !ok {
 		fmt.Println("err. not a string")
-		return
 	}
 
-	fmt.Println(str)
+	fmt.Println("Str:", str)
 
 	mystery = 6
 	integer, ok := mystery.(string)
 
 	if !ok {
 		fmt.Println("err. not a string")
-		return
 	}
 
 	fmt.Println(integer)

@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"flag"
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/bedrockruntime"
@@ -29,10 +32,12 @@ func main() {
 		return
 	}
 
+	proompt := getProompt("Write your proompt:")
+
 	userMessage := bedrockTypes.Message{
 		Content: []bedrockTypes.ContentBlock{
 			&bedrockTypes.ContentBlockMemberText{
-				Value: "Hello. How can i deploy a lambda in go in AWS?",
+				Value: proompt,
 			},
 		},
 		Role: bedrockTypes.ConversationRoleUser,
@@ -75,4 +80,20 @@ func main() {
 		fmt.Println("An error has occurred")
 		panic("exit")
 	}
+}
+
+func getProompt(cmdText string) string {
+	fmt.Println(cmdText)
+	reader := bufio.NewReader(os.Stdin)
+
+	text, err := reader.ReadString('\n')
+
+	if err != nil {
+		return ""
+	}
+
+	text = strings.TrimSuffix(text, "\n")
+	text = strings.TrimSuffix(text, "\r")
+
+	return text
 }
