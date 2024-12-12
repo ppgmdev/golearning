@@ -13,13 +13,9 @@ import (
 	bedrockTypes "github.com/aws/aws-sdk-go-v2/service/bedrockruntime/types"
 )
 
-// Each model provider defines their own individual request and response formats.
-// For the format, ranges, and default values for the different models, refer to:
-// https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html
-
 func main() {
 
-	region := flag.String("region", "us-west-2", "The AWS region")
+	region := flag.String("region", "us-east-1", "The AWS region")
 	flag.Parse()
 
 	fmt.Printf("Using AWS region: %s\n", *region)
@@ -47,7 +43,7 @@ func main() {
 
 	client := bedrockruntime.NewFromConfig(sdkConfig)
 
-	modelId := "anthropic.claude-3-5-haiku-20241022-v1:0"
+	modelId := "amazon.nova-micro-v1:0"
 
 	output, err := client.Converse(ctx, &bedrockruntime.ConverseInput{
 		ModelId:  &modelId,
