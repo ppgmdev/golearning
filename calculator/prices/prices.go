@@ -34,13 +34,13 @@ func (job *TaxIncludedPriceJob) LoadData() error {
 	return nil
 }
 
-func (job *TaxIncludedPriceJob) Process() error { // struct method
+func (job *TaxIncludedPriceJob) Process(doneChan chan bool) { // struct method
 
 	err := job.LoadData()
 
 	if err != nil {
 		fmt.Println(err)
-		return err
+		//return err
 	}
 
 	result := make(map[string]string)
@@ -51,7 +51,8 @@ func (job *TaxIncludedPriceJob) Process() error { // struct method
 	}
 
 	job.TaxIncludedPrices = result
-	return job.IOManager.WriteResult(job)
+	job.IOManager.WriteResult(job)
+	doneChan <- true
 
 }
 
