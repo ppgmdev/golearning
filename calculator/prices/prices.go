@@ -34,13 +34,17 @@ func (job *TaxIncludedPriceJob) LoadData() error {
 	return nil
 }
 
-func (job *TaxIncludedPriceJob) Process(doneChan chan bool) { // struct method
+func (job *TaxIncludedPriceJob) Process(doneChan chan bool, errorChan chan error) { // struct method
 
 	err := job.LoadData()
+
+	// errorChan <- errors.New("error")
 
 	if err != nil {
 		fmt.Println(err)
 		//return err
+		errorChan <- err
+		return
 	}
 
 	result := make(map[string]string)
