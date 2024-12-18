@@ -2,12 +2,14 @@ package main
 
 import (
 	"net/http"
+	"restapi/db"
 	"restapi/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	db.InitDB()
 	server := gin.Default() // setup an engine with logger and recovery middleware, returns pointer
 
 	server.GET("/events", getEvents) // not executing function as a value
