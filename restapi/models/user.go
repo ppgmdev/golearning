@@ -39,11 +39,11 @@ func (u User) Save() error {
 }
 
 func (u User) ValidateCredentials() error {
-	query := "SELECT password FROM users WHERE email = ?"
+	query := "SELECT id, password FROM users WHERE email = ?"
 	row := db.DB.QueryRow(query, u.Email)
 
 	var retrievePassword string
-	err := row.Scan(&retrievePassword)
+	err := row.Scan(&u.ID, &retrievePassword)
 
 	if err != nil {
 		return errors.New("credentials invalid 1")
