@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"fmt"
 	"restapi/db"
 	"restapi/utils"
@@ -35,4 +36,25 @@ func (u User) Save() error {
 	userId, err := result.LastInsertId()
 	u.ID = userId
 	return err
+}
+
+func (u User) ValidateCredentials() error {
+	query := "SELECT password FROM users WHERE email = ?"
+	row := db.DB.QueryRow(query, u.Email)
+
+	var retrievePassword string
+	err := row.Scan(&retrievePassword)
+
+	if err != nil {
+		return errors.New("credentials invalid 1")
+	}
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievePassword)
+
+	if !passwordIsValid {
+		return errors.New("credentials invalid 2")
+	}
+
+	return nil
+
 }
