@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "name": "test event",
-    "description": "test event description",
+    "description": "another test event",
     "location": "test location",
     "dateTime": "2024-01-01T15:30:00.000Z"
 }
