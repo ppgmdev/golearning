@@ -3,7 +3,7 @@ content-type: application/json
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzM0NzI3MzM4LCJ1c2VySWQiOjB9.l9oaFphZ5p6XyOmA3rjhLTNvTzydqGHI-ud7Ew0TJMs
 
 {
-    "name": "test event 5",
+    "name": "test event 4",
     "description": "another test event",
     "location": "test location",
     "dateTime": "2024-01-01T15:30:00.000Z"
